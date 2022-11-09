@@ -327,7 +327,8 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
                 // NoClassDefFoundError may be thrown if interface class's dependency jar is missing
                 return;
             }
-
+            // key:将我们定义的接口中的每一个方法，都组装成一个MethodConfig（类似于Spring中的Bean）
+            // 比如说：方法可以重试的，是否过期的。。。等等
             for (Method method : methods) {
                 if (ConfigurationUtils.hasSubProperties(configProperties, method.getName())) {
                     MethodConfig methodConfig = getMethodByName(method.getName());

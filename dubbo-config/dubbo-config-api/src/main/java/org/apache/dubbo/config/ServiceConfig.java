@@ -226,10 +226,11 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
             }
             if (this.shouldExport()) {
                 this.init();
-
+                // 如果设置了延迟发布的话，那么就会延迟发布
                 if (shouldDelay()) {
                     doDelayExport();
                 } else {
+                    // 核心服务对外发布源码的流程就在这里
                     doExport();
                 }
             }

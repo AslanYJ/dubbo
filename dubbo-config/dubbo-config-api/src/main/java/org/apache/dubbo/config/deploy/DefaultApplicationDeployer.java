@@ -175,13 +175,16 @@ public class DefaultApplicationDeployer extends AbstractDeployer<ApplicationMode
             return;
         }
         // Ensure that the initialization is completed when concurrent calls
+        // 确保能初始化
         synchronized (startLock) {
             if (initialized) {
                 return;
             }
             // register shutdown hook
+            // 退出的时候释放一些资源
             registerShutdownHook();
 
+            // 启动一个配置中心
             startConfigCenter();
 
             loadApplicationConfigs();
